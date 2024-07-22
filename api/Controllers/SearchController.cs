@@ -25,6 +25,10 @@ namespace api.Controllers
         [HttpGet]
         public async Task<IActionResult> Search(string url, string search )
         {
+            if(string.IsNullOrEmpty(url) || string.IsNullOrEmpty(search))
+                {
+                throw new ArgumentNullException();
+            }
             try
             {
                 var result = await _searchService.Search(url, search);
